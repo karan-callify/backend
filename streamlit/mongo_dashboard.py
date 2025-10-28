@@ -1,13 +1,18 @@
+from os import getenv
 import streamlit as st
 import pandas as pd
 from pymongo import MongoClient
 import json
+import dotenv
+
+# Load environment variables from .env file
+dotenv.load_dotenv()
 
 # -----------------------------
 # MongoDB Connection
 # -----------------------------
-MONGO_URI = "mongodb+srv://my_website:my_website@cluster0.amara6i.mongodb.net/callify?retryWrites=true&w=majority"
-MONGO_DB_NAME = "callify"
+MONGO_URI = getenv("MONGO_URI", "mongodb://localhost:27017/")
+MONGO_DB_NAME = getenv("MONGO_DB_NAME", "callify")
 
 # Connect to MongoDB
 client = MongoClient(MONGO_URI)
